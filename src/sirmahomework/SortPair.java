@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -47,7 +45,7 @@ public class SortPair {
         for (int i = 0; i < empList.size(); i++) {
             Employee firstEmployee = empList.get(i);
             for (int j = 0; j < empList.size(); j++) {
-                if(i != j) {
+                if(i == j) break;
                 Employee secondEmployee = empList.get(j);
                     if(firstEmployee.getProjectID() == secondEmployee.getProjectID()){
                         boolean overlap = checkDateOverlaps(firstEmployee.getDateFrom(), firstEmployee.getDateTo(), secondEmployee.getDateFrom(), secondEmployee.getDateTo());
@@ -64,20 +62,11 @@ public class SortPair {
                                 empPair.add(pair);
                             }
                     }
-                } 
+                
                 
             }
             
         }
-        Set<Integer> attributes = new HashSet<>();
-        List duplicates = new ArrayList<>();
-        for(EmployeesPair pair : empPair) {
-            if(attributes.contains(pair.getProjectID())) {
-                duplicates.add(pair);
-            }
-            attributes.add(pair.getProjectID());
-        }
-        empPair.removeAll(duplicates);
         
     }
     
