@@ -79,6 +79,10 @@ public class SirmaHomeWork extends JFrame{
                     sortPair = new SortPair(readFromFile.getEmployeeList(file.getAbsolutePath()));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(SirmaHomeWork.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NumberFormatException formatEx){
+                    JOptionPane.showMessageDialog(null,
+                    "Несъответстващи данни във формата на файла !", "Внимание",
+                    JOptionPane.WARNING_MESSAGE);
                 }
             showDataInTable(sortPair.getLongestTime(), table);
             revalidate();

@@ -42,7 +42,7 @@ public class ReadFromFile {
        Scanner scanner = new Scanner(getClass().getResourceAsStream(fileName));
        return parseEmployee(scanner);  
 }     
-    public  List<Employee> getEmployeeList(String customFile) throws FileNotFoundException {
+    public  List<Employee> getEmployeeList(String customFile) throws FileNotFoundException, NumberFormatException {
       
        Scanner scanner = new Scanner(new FileReader(customFile));      
        return parseEmployee(scanner);  
