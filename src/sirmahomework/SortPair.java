@@ -43,7 +43,7 @@ public class SortPair {
         return pair2.getTotalDays() - pair1.getTotalDays();
     }
 }
-    private List<EmployeesPair> addToPair(List<Employee> empList){
+    private void addToPair(List<Employee> empList){
         for (int i = 0; i < empList.size(); i++) {
             Employee firstEmployee = empList.get(i);
             for (int j = 0; j < empList.size(); j++) {
@@ -78,7 +78,7 @@ public class SortPair {
             attributes.add(pair.getProjectID());
         }
         empPair.removeAll(duplicates);
-        return empPair;
+        
     }
     
     private boolean checkDateOverlaps(Date startDate1, Date endDate1, Date startDate2, Date endDate2){
