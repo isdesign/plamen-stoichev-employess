@@ -48,6 +48,14 @@ public class EmployeesPair {
     public int getTotalDays() {
         return this.totalDays;
     }
+
+    public Date getDateFrom() {
+        return dateFrom;
+    }
+
+    public Date getDateTo() {
+        return dateTo;
+    }
     
     
     //Метод за изчисляване на брой дни между две дати

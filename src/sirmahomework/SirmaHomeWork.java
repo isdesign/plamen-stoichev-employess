@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +33,7 @@ public class SirmaHomeWork extends JFrame{
     protected ReadFromFile readFromFile;
     protected SortPair sortPair;
     protected JTable table;
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
     
     public SirmaHomeWork(){
         
@@ -58,9 +60,16 @@ public class SirmaHomeWork extends JFrame{
      DefaultTableModel model = new DefaultTableModel(new Object[]{"Employee ID #1", 
                                                                   "Employee ID #2",
                                                                   "Project ID",
+                                                                  "From date",
+                                                                  "To date",
                                                                   "Days worked"}, 0);
      for(EmployeesPair pair : listOfPairs){
-          model.addRow(new Object[]{pair.getFirstEmpID(), pair.getSecondEmpID(), pair.getProjectID(), pair.getTotalDays()});
+          model.addRow(new Object[]{pair.getFirstEmpID(),
+                                    pair.getSecondEmpID(), 
+                                    pair.getProjectID(),
+                                    formatter.format(pair.getDateFrom()),
+                                    formatter.format(pair.getDateTo()),
+                                    pair.getTotalDays()});
      }
      table.setModel(model);
 }
