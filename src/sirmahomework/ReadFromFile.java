@@ -79,7 +79,16 @@ public class ReadFromFile {
                                                        "yyyy/MM/dd",
                                                        "dd/MM/yyyy",
                                                        "MMM d, ''yy",
-                                                       "d MMM yyyy"
+                                                       "d MMM yyyy",
+                                                       "dd/mm/yy",
+                                                       "d/m/yy",
+                                                       "dd-mmm-yy",
+                                                       "dd-mmm-yyyy",
+                                                       "d-mmm-yyyy",
+                                                       "d-mmmm-yy",
+                                                       "d-mmmm-yyyy",
+                                                       "mmm-dd-yy",
+                                                       "mmm-dd-yyyy"
         );    
 
     for(String format: dateFormats){
