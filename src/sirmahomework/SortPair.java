@@ -11,7 +11,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -45,28 +50,37 @@ public class SortPair {
         for (int i = 0; i < empList.size(); i++) {
             Employee firstEmployee = empList.get(i);
             for (int j = 0; j < empList.size(); j++) {
-                if(i == j) break;
+                if(i != j) {
                 Employee secondEmployee = empList.get(j);
-                if(firstEmployee.getProjectID() == secondEmployee.getProjectID()){
-                    boolean overlap = checkDateOverlaps(firstEmployee.getDateFrom(), firstEmployee.getDateTo(), secondEmployee.getDateFrom(), secondEmployee.getDateTo());
-                    if(overlap){
-                        Date overlapStart = getStartDateOverlap(firstEmployee.getDateFrom(), secondEmployee.getDateFrom());
-                        Date overlapEnd = getEndDateOverlap(firstEmployee.getDateTo(), secondEmployee.getDateTo());
+                    if(firstEmployee.getProjectID() == secondEmployee.getProjectID()){
+                        boolean overlap = checkDateOverlaps(firstEmployee.getDateFrom(), firstEmployee.getDateTo(), secondEmployee.getDateFrom(), secondEmployee.getDateTo());
+                            if(overlap){
+                                Date overlapStart = getStartDateOverlap(firstEmployee.getDateFrom(), secondEmployee.getDateFrom());
+                                Date overlapEnd = getEndDateOverlap(firstEmployee.getDateTo(), secondEmployee.getDateTo());
                         
-                        EmployeesPair pair = new EmployeesPair(firstEmployee.getEmpID(), 
-                                                            secondEmployee.getEmpID(), 
-                                                            firstEmployee.getProjectID(), 
-                                                            overlapStart, 
-                                                            overlapEnd);
+                                EmployeesPair pair = new EmployeesPair(firstEmployee.getEmpID(), 
+                                                                        secondEmployee.getEmpID(), 
+                                                                        firstEmployee.getProjectID(), 
+                                                                        overlapStart, 
+                                                                        overlapEnd);
                     
-                    empPair.add(pair);
+                                empPair.add(pair);
+                            }
                     }
-                }
-                
+                } 
                 
             }
             
         }
+        Set<Integer> attributes = new HashSet<>();
+        List duplicates = new ArrayList<>();
+        for(EmployeesPair pair : empPair) {
+            if(attributes.contains(pair.getProjectID())) {
+                duplicates.add(pair);
+            }
+            attributes.add(pair.getProjectID());
+        }
+        empPair.removeAll(duplicates);
         return empPair;
     }
     
@@ -95,5 +109,5 @@ public class SortPair {
            return employeeDate2;
        }
    }
-    
+       
 }
